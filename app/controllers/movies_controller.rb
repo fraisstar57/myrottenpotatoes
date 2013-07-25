@@ -60,12 +60,18 @@ class MoviesController < ApplicationController
   attr_accessor:titleSetCss
   attr_accessor:releaseDateSetCss
   
+  attr_accessor:all_ratings
+  
   def index  
 	
 	@titleSetCss = false
 	@releaseDateSetCss = false
 	
 	@movies = Movie.all
+	
+	@all_ratings = Array.new()
+	Movie.all(:select => "DISTINCT rating").each { |r| @all_ratings.push(r.rating) }
+	
 	if(params[:titleOrder] != nil) 
 		session[:titleOrder] = params[:titleOrder]
 	end

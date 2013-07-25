@@ -7,39 +7,40 @@ class MoviesController < ApplicationController
   end
 
   def sort_movies
-	@sortOrder = params[:order]
-	if(params == nil || params[:order] == nil || params[:order] == "none") 
+	@titleSortOrder = params[:titleOrder]
+	if(params == nil || params[:titleOrder] == nil || params[:titleOrder] == "none") 
 		@movies = @movies.sort_by{|e| e[:title]}
-		@sortOrder = "desc"
-	elsif (@sortOrder == "asc") 
+		@titleSortOrder = "desc"
+	elsif (@titleSortOrder == "asc") 
 		@movies = @movies.sort_by{|e| e[:title]}
-		@sortOrder = "desc"
-	elsif (@sortOrder == "desc")
+		@titleSortOrder = "desc"
+	elsif (@titleSortOrder == "desc")
 		@movies = @movies.sort_by{|e| e[:title]}.reverse
-		@sortOrder = "asc"
+		@titleSortOrder = "asc"
 	end
-	if(@sortOrder != nil)
-		sortOrder = @sortOrder
-		params[:order] = @sortOrder
-		session[:order] = @sortOrder
+	if(@titleSortOrder != nil)
+		titleSortOrder = @titleSortOrder
+		params[:titleOrder] = @titleSortOrder
+		session[:titleOrder] = @titleSortOrder
 	end
 	movies = @movies
   end
   
-  attr_accessor:sortOrder
+  attr_accessor:titleSortOrder
+  attr_accessor:releaseDateSortOrder
   
   def index  
 	@movies = Movie.all
-	if(params[:order] != nil) 
-		session[:order] = params[:order]
+	if(params[:titleOrder] != nil) 
+		session[:titleOrder] = params[:titleOrder]
 	end
-	if(session[:order] != nil) 
-		@sortOrder = session[:order]
-	elsif(@sortOrder == nil && session[:order] == nil)
-		@sortOrder = "asc"
-		session[:order] = @sortOrder
+	if(session[:titleOrder] != nil) 
+		@titleSortOrder = session[:titleOrder]
+	elsif(@titleSortOrder == nil && session[:titleOrder] == nil)
+		@titleSortOrder = "asc"
+		session[:titleOrder] = @titleSortOrder
 	end
-	if(params[:order] == "none" || params[:order] == "asc" || params[:order] == "desc") 
+	if(params[:titleOrder] == "none" || params[:titleOrder] == "asc" || params[:titleOrder] == "desc") 
 		sort_movies
 	end
   end

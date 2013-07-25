@@ -61,16 +61,25 @@ class MoviesController < ApplicationController
   attr_accessor:releaseDateSetCss
   
   attr_accessor:all_ratings
+  attr_accessor:ratingsChecked
   
   def index  
 	
 	@titleSetCss = false
 	@releaseDateSetCss = false
 	
-	@movies = Movie.all
-	
 	@all_ratings = Array.new()
 	Movie.all(:select => "DISTINCT rating").each { |r| @all_ratings.push(r.rating) }
+	
+	if(params[:ratings] == nil) 
+		@ratingsChecked = @all_ratings
+	else
+		@ratingsChecked = params[:ratings].keys
+	end
+	
+	#@movies = Movie.all
+	@movies = Movie.where("rating IN (?)", @ratingsChecked).to_a
+	
 	
 	if(params[:titleOrder] != nil) 
 		session[:titleOrder] = params[:titleOrder]

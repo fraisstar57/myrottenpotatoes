@@ -8,9 +8,9 @@ class MoviesController < ApplicationController
 
   def sort_movies
 	@sortOrder = params[:order]
-	if(params == nil || params[:order] == nil) 
+	if(params == nil || params[:order] == nil || params[:order] == "none") 
 		@movies = @movies.sort_by{|e| e[:title]}
-		@sortOrder = "asc"
+		@sortOrder = "desc"
 	elsif (@sortOrder == "asc") 
 		@movies = @movies.sort_by{|e| e[:title]}
 		@sortOrder = "desc"
@@ -30,10 +30,14 @@ class MoviesController < ApplicationController
   
   def index  
 	@movies = Movie.all
+	if(params[:order] != nil) 
+		session[:order] = params[:order]
+	end
 	if(session[:order] != nil) 
 		@sortOrder = session[:order]
 	elsif(@sortOrder == nil && session[:order] == nil)
-		@sortOrder = "none"
+		@sortOrder = "asc"
+		session[:order] = @sortOrder
 	end
 	if(params[:order] == "none" || params[:order] == "asc" || params[:order] == "desc") 
 		sort_movies

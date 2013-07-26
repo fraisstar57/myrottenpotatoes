@@ -61,29 +61,54 @@ class MoviesController < ApplicationController
   attr_accessor:releaseDateSetCss
   
   attr_accessor:all_ratings
+  attr_accessor:ratingsFiltered
   attr_accessor:ratingsChecked
   
   def index  
-	
+				
 	@titleSetCss = false
 	@releaseDateSetCss = false
 	
 	@all_ratings = Array.new()
 	Movie.all(:select => "DISTINCT rating").each { |r| @all_ratings.push(r.rating) }
 	
+	@ratingsChecked = Hash.new()	
 	if(params[:ratings] == nil) 
-		@ratingsChecked = @all_ratings
+		@ratingsFiltered = @all_ratings
+		@all_ratings.each { |ar| @ratingsChecked[ar] = "1" }
 	else
-		@ratingsChecked = params[:ratings].keys
+		@ratingsFiltered = params[:ratings].keys
+		@ratingsChecked = params[:ratings]
+		session[:ratingsFiltered] = @ratingsFiltered
+		session[:ratingsChecked] = @ratingsChecked
 	end
-	
-	#@movies = Movie.all
-	@movies = Movie.where("rating IN (?)", @ratingsChecked).to_a
-	
 	
 	if(params[:titleOrder] != nil) 
 		session[:titleOrder] = params[:titleOrder]
+		if(session[:ratingsChecked] != nil)
+			@ratingsChecked = session[:ratingsChecked]
+		end
+		if(session[:ratingsFiltered] != nil)
+			@ratingsFiltered = session[:ratingsFiltered]
+		end
 	end
+	if(params[:releaseDateOrder] != nil) 
+		session[:releaseDateOrder] = params[:releaseDateOrder]
+		if(session[:ratingsChecked] != nil)
+			@ratingsChecked = session[:ratingsChecked]
+		end
+		if(session[:ratingsFiltered] != nil)
+			@ratingsFiltered = session[:ratingsFiltered]
+		end
+	end
+		
+	
+	if(@ratingsFiltered == nil)
+		@movies = Movie.all
+	else
+		@movies = Movie.where("rating IN (?)", @ratingsFiltered).to_a
+	end
+	
 	if(session[:titleOrder] != nil) 
 		@titleSortOrder = session[:titleOrder]
 	elsif(@titleSortOrder == nil && session[:titleOrder] == nil)
@@ -94,9 +119,6 @@ class MoviesController < ApplicationController
 		sort_movies_by_title
 	end
 	
-	if(params[:releaseDateOrder] != nil) 
-		session[:releaseDateOrder] = params[:releaseDateOrder]
-	end
 	if(session[:releaseDateOrder] != nil) 
 		@releaseDateSortOrder = session[:releaseDateOrder]
 	elsif(@releaseDateSortOrder == nil && session[:releaseDateOrder] == nil)
@@ -105,7 +127,7 @@ class MoviesController < ApplicationController
 	end
 	if(params[:releaseDateOrder] == "none" || params[:releaseDateOrder] == "asc" || params[:releaseDateOrder] == "desc") 
 		sort_movies_by_release_date
-	end
+	end		
 	
   end
 

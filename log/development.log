@@ -13370,3 +13370,280 @@ Served asset /jquery_ujs.js - 304 Not Modified (0ms)
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-25 18:08:15 -0700
 Served asset /application.js - 304 Not Modified (19ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:19:38 -0700
+  Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (16.4ms)[0m  [1mSELECT DISTINCT rating FROM "movies" [0m
+  [1m[35mMovie Load (11.4ms)[0m  SELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))
+Redirected to 
+Completed 404 Not Found in 63ms
+
+ActionController::RoutingError (No route matches {:controller=>"movie", :action=>"show", :titleOrder=>"asc", :releaseDateOrder=>"desc", :ratings=>{"G"=>"1", "PG"=>"1"}}):
+  app/controllers/movies_controller.rb:141:in `index'
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:21:20 -0700
+  Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (4.7ms)[0m  [1mSELECT DISTINCT rating FROM "movies" [0m
+  [1m[35mMovie Load (29.9ms)[0m  SELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))
+Redirected to 
+Completed 500 Internal Server Error in 70ms
+
+ActionController::RedirectBackError (No HTTP_REFERER was set in the request to this action, so redirect_to :back could not be called successfully. If this is a test, make sure to specify request.env["HTTP_REFERER"].):
+  app/controllers/movies_controller.rb:141:in `index'
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.6ms)
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (9.1ms)
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (27.2ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:21:36 -0700
+  Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (9.9ms)[0m  [1mSELECT DISTINCT rating FROM "movies" [0m
+  [1m[35mMovie Load (5.2ms)[0m  SELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))
+Redirected to 
+Completed 500 Internal Server Error in 107ms
+
+NoMethodError (undefined method `index_url' for #<MoviesController:0xaa59790>):
+  app/controllers/movies_controller.rb:141:in `index'
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.6ms)
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (144.5ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:22:21 -0700
+
+SyntaxError (/media/CS169X/Google Drive/Course1/hw2_rottenpotatoes/app/controllers/movies_controller.rb:141: syntax error, unexpected '\n', expecting tASSOC
+/media/CS169X/Google Drive/Course1/hw2_rottenpotatoes/app/controllers/movies_controller.rb:174: syntax error, unexpected $end, expecting keyword_end):
+  
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.2ms)
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.9ms)
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.5ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:22:47 -0700
+
+SyntaxError (/media/CS169X/Google Drive/Course1/hw2_rottenpotatoes/app/controllers/movies_controller.rb:141: syntax error, unexpected '\n', expecting tASSOC
+/media/CS169X/Google Drive/Course1/hw2_rottenpotatoes/app/controllers/movies_controller.rb:174: syntax error, unexpected $end, expecting keyword_end):
+  
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (17.7ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:23:12 -0700
+
+SyntaxError (/media/CS169X/Google Drive/Course1/hw2_rottenpotatoes/app/controllers/movies_controller.rb:141: syntax error, unexpected tASSOC, expecting '}'
+...t_to movie_path {:titleOrder => session[:titleOrder], :relea...
+...                               ^
+/media/CS169X/Google Drive/Course1/hw2_rottenpotatoes/app/controllers/movies_controller.rb:141: syntax error, unexpected tASSOC, expecting tCOLON2 or '[' or '.'
+...tleOrder], :releaseDateOrder => session[:releaseDateOrder], ...
+...                               ^
+/media/CS169X/Google Drive/Course1/hw2_rottenpotatoes/app/controllers/movies_controller.rb:141: syntax error, unexpected tASSOC, expecting tCOLON2 or '[' or '.'
+...:releaseDateOrder], :ratings => session[:ratings]}
+...                               ^):
+  
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (6.7ms)
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.6ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:23:59 -0700
+  Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (23.5ms)[0m  [1mSELECT DISTINCT rating FROM "movies" [0m
+  [1m[35mMovie Load (27.8ms)[0m  SELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))
+Completed 404 Not Found in 136ms
+
+ActionController::RoutingError (No route matches {:action=>"show", :controller=>"movies", :titleOrder=>"asc", :releaseDateOrder=>"desc", :ratings=>{"G"=>"1", "PG"=>"1"}}):
+  app/controllers/movies_controller.rb:141:in `index'
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.2ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:25:40 -0700
+  Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (4.9ms)[0m  [1mSELECT DISTINCT rating FROM "movies" [0m
+  [1m[35mMovie Load (8.4ms)[0m  SELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))
+Completed 404 Not Found in 184ms
+
+ActionController::RoutingError (No route matches {:action=>"show", :controller=>"movies"}):
+  app/controllers/movies_controller.rb:141:in `index'
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:26:02 -0700
+  Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (5.0ms)[0m  [1mSELECT DISTINCT rating FROM "movies" [0m
+  [1m[35mMovie Load (25.6ms)[0m  SELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))
+Redirected to http://localhost:3000/movies
+Completed 302 Found in 63ms
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:26:03 -0700
+  Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (7.2ms)[0m  [1mSELECT DISTINCT rating FROM "movies" [0m
+  [1m[35mMovie Load (17.8ms)[0m  SELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))
+Redirected to http://localhost:3000/movies
+Completed 302 Found in 105ms
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:26:04 -0700
+  Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (14.9ms)[0m  [1mSELECT DISTINCT rating FROM "movies" [0m
+  [1m[35mMovie Load (21.4ms)[0m  SELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))
+Redirected to http://localhost:3000/movies
+Completed 302 Found in 82ms
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:26:06 -0700
+  Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (16.3ms)[0m  [1mSELECT DISTINCT rating FROM "movies" [0m
+  [1m[35mMovie Load (6.0ms)[0m  SELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))
+Redirected to http://localhost:3000/movies
+Completed 302 Found in 63ms
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:26:07 -0700
+  Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (4.2ms)[0m  [1mSELECT DISTINCT rating FROM "movies" [0m
+  [1m[35mMovie Load (5.8ms)[0m  SELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))
+Redirected to http://localhost:3000/movies
+Completed 302 Found in 80ms
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:26:09 -0700
+  Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (7.6ms)[0m  [1mSELECT DISTINCT rating FROM "movies" [0m
+  [1m[35mMovie Load (5.2ms)[0m  SELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))
+Redirected to http://localhost:3000/movies
+Completed 302 Found in 69ms
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:26:10 -0700
+  Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (41.7ms)[0m  [1mSELECT DISTINCT rating FROM "movies" [0m
+  [1m[35mMovie Load (6.9ms)[0m  SELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))
+Redirected to http://localhost:3000/movies
+Completed 302 Found in 106ms
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:26:12 -0700
+  Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (26.8ms)[0m  [1mSELECT DISTINCT rating FROM "movies" [0m
+  [1m[35mMovie Load (11.5ms)[0m  SELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))
+Redirected to http://localhost:3000/movies
+Completed 302 Found in 75ms
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:26:13 -0700
+  Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (18.0ms)[0m  [1mSELECT DISTINCT rating FROM "movies" [0m
+  [1m[35mMovie Load (12.2ms)[0m  SELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))
+Redirected to http://localhost:3000/movies
+Completed 302 Found in 56ms
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:26:15 -0700
+  Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (24.7ms)[0m  [1mSELECT DISTINCT rating FROM "movies" [0m
+  [1m[35mMovie Load (20.9ms)[0m  SELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))
+Redirected to http://localhost:3000/movies
+Completed 302 Found in 273ms
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:26:16 -0700
+  Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (24.9ms)[0m  [1mSELECT DISTINCT rating FROM "movies" [0m
+  [1m[35mMovie Load (19.5ms)[0m  SELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))
+Redirected to http://localhost:3000/movies?ratings%5BG%5D=1&ratings%5BPG%5D=1&releaseDateOrder=desc&titleOrder=asc
+Completed 302 Found in 126ms
+
+
+Started GET "/movies?ratings%5BG%5D=1&ratings%5BPG%5D=1&releaseDateOrder=desc&titleOrder=asc" for 127.0.0.1 at 2013-07-25 18:26:18 -0700
+  Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"G"=>"1", "PG"=>"1"}, "releaseDateOrder"=>"desc", "titleOrder"=>"asc"}
+  [1m[36mMovie Load (21.9ms)[0m  [1mSELECT DISTINCT rating FROM "movies" [0m
+  [1m[35mMovie Load (22.0ms)[0m  SELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))
+Rendered movies/index.html.haml within layouts/application (15.9ms)
+Completed 200 OK in 694ms (Views: 577.7ms | ActiveRecord: 82.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-25 18:26:20 -0700
+Served asset /application.css - 304 Not Modified (30ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-25 18:26:20 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-25 18:26:20 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-25 18:26:20 -0700
+Served asset /application.js - 304 Not Modified (23ms)
+
+
+Started GET "/movies/7" for 127.0.0.1 at 2013-07-25 18:26:26 -0700
+  Processing by MoviesController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mMovie Load (6.7ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."id" = ? LIMIT 1[0m  [["id", "7"]]
+Rendered movies/show.html.haml within layouts/application (19.6ms)
+Completed 200 OK in 668ms (Views: 640.4ms | ActiveRecord: 24.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-25 18:26:28 -0700
+Served asset /application.css - 304 Not Modified (12ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-25 18:26:28 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-25 18:26:28 -0700
+Served asset /application.js - 304 Not Modified (27ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-25 18:26:28 -0700
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-07-25 18:26:31 -0700
+  Processing by MoviesController#index as HTML
+  [1m[35mMovie Load (14.8ms)[0m  SELECT DISTINCT rating FROM "movies" 
+  [1m[36mMovie Load (6.6ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))[0m
+Redirected to http://localhost:3000/movies?ratings%5BG%5D=1&ratings%5BPG%5D=1&releaseDateOrder=asc&titleOrder=desc
+Completed 302 Found in 80ms
+
+
+Started GET "/movies?ratings%5BG%5D=1&ratings%5BPG%5D=1&releaseDateOrder=asc&titleOrder=desc" for 127.0.0.1 at 2013-07-25 18:26:32 -0700
+  Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"G"=>"1", "PG"=>"1"}, "releaseDateOrder"=>"asc", "titleOrder"=>"desc"}
+  [1m[35mMovie Load (21.0ms)[0m  SELECT DISTINCT rating FROM "movies" 
+  [1m[36mMovie Load (12.4ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE (rating IN ('G','PG'))[0m
+Rendered movies/index.html.haml within layouts/application (48.1ms)
+Completed 200 OK in 814ms (Views: 707.8ms | ActiveRecord: 75.1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-07-25 18:26:34 -0700
+Served asset /application.js - 304 Not Modified (28ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-07-25 18:26:34 -0700
+Served asset /application.css - 304 Not Modified (15ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-25 18:26:35 -0700
+Served asset /jquery.js - 304 Not Modified (16ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-07-25 18:26:35 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)

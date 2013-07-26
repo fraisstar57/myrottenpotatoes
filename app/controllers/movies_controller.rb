@@ -69,19 +69,20 @@ class MoviesController < ApplicationController
 	@titleSetCss = false
 	@releaseDateSetCss = false
 	
+	@redirectValue = false
+	
 	@all_ratings = Array.new()
 	Movie.all(:select => "DISTINCT rating").each { |r| @all_ratings.push(r.rating) }
 	
-	@redirect = false
 	@ratingsChecked = Hash.new()	
 	if(params[:ratings] == nil && session[:ratings] == nil) 
 		@ratingsFiltered = @all_ratings
 		@all_ratings.each { |ar| @ratingsChecked[ar] = "1" }
 	elsif(params[:ratings] == nil)
+		@redirectValue = true
 		params[:ratings] = session[:ratings]
 		@ratingsFiltered = session[:ratings].keys
 		@ratingsChecked = session[:ratings]
-		redirect = true
 	else
 		@ratingsFiltered = params[:ratings].keys
 		@ratingsChecked = params[:ratings]
@@ -135,6 +136,10 @@ class MoviesController < ApplicationController
 	if(params[:releaseDateOrder] == "none" || params[:releaseDateOrder] == "asc" || params[:releaseDateOrder] == "desc") 
 		sort_movies_by_release_date
 	end		
+	
+	if(@redirectValue)
+	redirect_to movies_path({:titleOrder => session[:titleOrder], :releaseDateOrder => session[:releaseDateOrder], :ratings => session[:ratings]})
+	end
 	
   end
 

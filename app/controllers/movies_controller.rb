@@ -10,18 +10,20 @@ class MoviesController < ApplicationController
 	@titleSortOrder = params[:titleOrder]
 	if(params == nil || params[:titleOrder] == nil || params[:titleOrder] == "none") 
 		@movies = @movies.sort_by{|e| e[:title]}
+		session[:titleOrder] = @titleSortOrder
 		@titleSortOrder = "desc"
 	elsif (@titleSortOrder == "asc") 
 		@movies = @movies.sort_by{|e| e[:title]}
+		session[:titleOrder] = @titleSortOrder
 		@titleSortOrder = "desc"
 	elsif (@titleSortOrder == "desc")
 		@movies = @movies.sort_by{|e| e[:title]}.reverse
+		session[:titleOrder] = @titleSortOrder
 		@titleSortOrder = "asc"
 	end
 	if(@titleSortOrder != nil)
 		titleSortOrder = @titleSortOrder
 		params[:titleOrder] = @titleSortOrder
-		session[:titleOrder] = @titleSortOrder
 	end
 	@titleSortOrder = params[:titleOrder]
 	
@@ -37,18 +39,20 @@ class MoviesController < ApplicationController
 	@releaseDateSortOrder = params[:releaseDateOrder]
 	if(params == nil || params[:releaseDateOrder] == nil || params[:releaseDateOrder] == "none") 
 		@movies = @movies.sort_by{|e| mapU.call(e)}
+		session[:releaseDateOrder] = @releaseDateSortOrder
 		@releaseDateSortOrder = "desc"
 	elsif (@releaseDateSortOrder == "asc") 
 		@movies = @movies.sort_by{|e| mapU.call(e)}
+		session[:releaseDateOrder] = @releaseDateSortOrder
 		@releaseDateSortOrder = "desc"
 	elsif (@releaseDateSortOrder == "desc")
 		@movies = @movies.sort_by{|e| mapU.call(e)}.reverse
+		session[:releaseDateOrder] = @releaseDateSortOrder
 		@releaseDateSortOrder = "asc"
 	end
 	if(@releaseDateSortOrder != nil)
 		releaseDateSortOrder = @releaseDateSortOrder
 		params[:releaseDateOrder] = @releaseDateSortOrder
-		session[:releaseDateOrder] = @releaseDateSortOrder
 	end	
 	movies = @movies
 	@releaseDateSetCss = true
@@ -99,6 +103,9 @@ class MoviesController < ApplicationController
 		if(session[:ratingsFiltered] != nil)
 			@ratingsFiltered = session[:ratingsFiltered]
 		end
+	elsif(params[:titleOrder] == nil) 
+		@titleSortOrder = session[:titleOrder]	
+		@redirectValue = true
 	end
 	if(params[:releaseDateOrder] != nil) 
 		session[:releaseDateOrder] = params[:releaseDateOrder]
@@ -108,6 +115,9 @@ class MoviesController < ApplicationController
 		if(session[:ratingsFiltered] != nil)
 			@ratingsFiltered = session[:ratingsFiltered]
 		end
+	elsif(params[:releaseDateOrder] == nil) 
+		@releaseDateSortOrder = session[:releaseDateOrder]	
+		@redirectValue = true
 	end
 		
 	

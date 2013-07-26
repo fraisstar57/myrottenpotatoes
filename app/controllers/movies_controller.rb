@@ -72,15 +72,22 @@ class MoviesController < ApplicationController
 	@all_ratings = Array.new()
 	Movie.all(:select => "DISTINCT rating").each { |r| @all_ratings.push(r.rating) }
 	
+	@redirect = false
 	@ratingsChecked = Hash.new()	
-	if(params[:ratings] == nil) 
+	if(params[:ratings] == nil && session[:ratings] == nil) 
 		@ratingsFiltered = @all_ratings
 		@all_ratings.each { |ar| @ratingsChecked[ar] = "1" }
+	elsif(params[:ratings] == nil)
+		params[:ratings] = session[:ratings]
+		@ratingsFiltered = session[:ratings].keys
+		@ratingsChecked = session[:ratings]
+		redirect = true
 	else
 		@ratingsFiltered = params[:ratings].keys
 		@ratingsChecked = params[:ratings]
 		session[:ratingsFiltered] = @ratingsFiltered
 		session[:ratingsChecked] = @ratingsChecked
+		session[:ratings] = params[:ratings]
 	end
 	
 	if(params[:titleOrder] != nil) 
